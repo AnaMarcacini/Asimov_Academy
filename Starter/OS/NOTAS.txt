@@ -1,0 +1,4 @@
+
+os.getcwd() # caminho da pasta que estou
+
+os.listdir()#lista de arquivos da pasta 
