@@ -1,8 +1,8 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
-
+import plotly.express as px
+import pandas as pd
+from dash import html, dcc
+from dash.dependencies import Input, Output, State
 # Apresentando callback pela primeira vez
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -20,6 +20,8 @@ app.layout = html.Div([
 @app.callback(
     Output(component_id='my-output', component_property='children'),
     [Input(component_id='my-input', component_property='value')]
+    #estado state
+    #ideia -> sempre que a propriedade value do componente my-input for alterada executa a função update_output_div e retorna o retorno da função para o componente my-output
 )
 def update_output_div(input_value):
     return 'Saída: {}'.format(input_value)
