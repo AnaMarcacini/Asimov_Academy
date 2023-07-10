@@ -55,7 +55,7 @@ app.layout = html.Div(children=[
                               ),
                 html.H5("Variavel de analise:", style={"margin-top":"10px"}),
 
-                dcc.RadioItems(["gross income", "Rating"],  # valores
+                dcc.RadioItems(["gross income", "Rating"],  # valores || gross income -> somatoria|| rating media
                                "gross income",  # marcado por padrão
                                id="main_variable"
                                ) 
@@ -129,7 +129,8 @@ def render_graphs(cities, main_variable):
 # =========  Run server  =========== #
 
 if __name__ == "__main__":
-    app.run_server(port=8050, host='0.0.0.0', debug=True)
-
+    app.run_server(port=8050, host='0.0.0.0', debug=True)#testes
+    # app.run_server(port=8080, host='0.0.0.0', debug=False) #Produção
+#modo debug - modo de desenvolvimento || modo de testes -> mais lento
 
 # Dash is running on http://0.0.0.0:8050/

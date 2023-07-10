@@ -29,14 +29,14 @@ app.layout = html.Div([
             , sm =3), 
         dbc.Col([
             dbc.Row([
-                dbc.Col(dbc.Card(card_content,color="info",inverse=True,style={"height" : "40vh"}),md =4),
-                dbc.Col(dbc.Card(card_content,color="info",inverse=True,style={"height" : "40vh"}), md =4)
+                dbc.Col(dbc.Card(card_content,color="info",inverse=True,style={"height" : "40vh"}),md =6),
+                dbc.Col(dbc.Card(card_content,color="info",inverse=True,style={"height" : "40vh"}), md =6)
             ]),
             dbc.Row([
                 dbc.Col( dbc.Card(card_content,color="erro"),md=4),
                 dbc.Col( dbc.Card(card_content,color="erro"),md=4),
                 dbc.Col( dbc.Card(card_content,color="erro"),md=4),
-            ])
+            ])#obs somatoria de md deve dar 12 se eles ocuparem a tela inteira || cosidera em relação ao elemento pai não em relação a toda a tela
     ]), 
     ])
 
