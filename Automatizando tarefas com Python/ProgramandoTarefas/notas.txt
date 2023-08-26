@@ -1,0 +1,13 @@
+crontab -l --> lista todas as tarefas agendadas
+
+crontab -e -->abre o arquivo de texto
+
+
+
+* * * * * cd "/home/anahelena/GITs/Asimov_Academy/Automatizando tarefas com Python/ProgramandoTarefas" && /usr/bin/python cron.py
+
+
+
+
+
+* * * * * cd "/home/anahelena/GITs/Asimov_Academy/Automatizando tarefas com Python/ProgramandoTarefas" && /home/anahelena/anaconda3/bin/python cron.py

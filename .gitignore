@@ -12,7 +12,7 @@ build/
 develop-eggs/
 dist/
 downloads/
-Dashboards/Dash/Projetos/DashAuthLogin/Modelo_Autenticacao_Complexo/Aplicacao_Autenticacao
+Dashboards/Dash/Projetos/DashAuthLogin/Modelo_Autenticacao_Complexo/Aplicacao_Autenticacao/
 eggs/
 .eggs/
 lib/
