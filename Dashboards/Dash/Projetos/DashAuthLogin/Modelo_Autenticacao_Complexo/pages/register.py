@@ -61,6 +61,7 @@ def successful(n_clicks, username, password, email):
         conn = engine.connect()# cria conexão
         conn.execute(ins)# salva no banco de dados
         conn.close() # fecha o banco de dados 
+        print("TUDO OK NO REGISTRO")
         return ''
     else:
         return 'error'

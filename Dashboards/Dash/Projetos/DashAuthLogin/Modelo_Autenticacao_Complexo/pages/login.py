@@ -56,6 +56,7 @@ def successful(n_clicks, username, password):
     if user and password is not None:
         if check_password_hash(user.password, password):
             login_user(user)
+            print("ESTOU AQUI")
             return "success"
         else:
             return "error"

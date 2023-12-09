@@ -40,9 +40,12 @@ def load_user(user_id):
                 Input("register-state", "data")
             ])
 def render_page_content(login_state, register_state):
+    print (dash.callback_context)
+    print (dash.callback_context.triggered)
     ctx = dash.callback_context
     if ctx.triggered:
-        trigg_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        # [{'prop_id': 'register-state.data', 'value': 'error'}] --> valor de  ctx.triggered
+        trigg_id = ctx.triggered[0]['prop_id'].split('.')[0]# pega o valor 0 da lista (dicionario) com a chave prop_id separa a string register-state.data em register-state data e pega o valor 0 (register-state)
         
         if trigg_id == 'login-state' and login_state == "success":
             return '/data'
@@ -73,7 +76,7 @@ def render_page_content(pathname, login_state, register_state):
         return register.render_layout(register_state)
 
     if pathname == "/data":
-        if current_user.is_authenticated:
+        if current_user.is_authenticated:#verifica se o usuario já foi anteriormente autenticado
             return data.render_layout(current_user.username)
         else:
             return login.render_layout(register_state)
