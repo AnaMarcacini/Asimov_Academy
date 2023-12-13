@@ -175,7 +175,7 @@ def update_cards_ativos(historical_data, period, dropdown, book_data):
 
     df_book['datetime'] = pd.to_datetime(df_book['date'], format='%Y-%m-%d %H:%M:%S')
 
-    df2 = df_book.groupby(by=['ativo', 'tipo'])['vol'].sum()
+    df2 = df_book.groupby(by=['ativo', 'tipo'])['vol'].sum() # agrupar por quantidade
 
     diferenca_ativos = {}
     # agrupa os dados por valores únicos na primeira coluna do índice (level = 0)
@@ -204,12 +204,12 @@ def update_cards_ativos(historical_data, period, dropdown, book_data):
     dict_valores = {}
 
     for key, value in ativos_existentes.items():
-        df_auxiliar = (df_hist[df_hist.symbol.str.contains(key)])
+        df_auxiliar = (df_hist[df_hist.symbol.str.contains(key)])#um df para cad chave do df_hist
         df_auxiliar['datetime'] = pd.to_datetime(df_auxiliar['datetime'], format='%Y-%m-%d %H:%M:%S')
-        df_periodo = df_auxiliar[df_auxiliar['datetime'] > correct_timedelta]
+        df_periodo = df_auxiliar[df_auxiliar['datetime'] > correct_timedelta]# selecionar os valores apos a data 
         # import pdb; pdb.set_trace()
-        valor_atual = df_periodo['close'].iloc[-1]
-        diferenca_periodo= valor_atual/df_periodo['close'].iloc[0]
+        valor_atual = df_periodo['close'].iloc[-1] # pega o valor de fechamento da ação de cada dia -1 pega o ultimo valor
+        diferenca_periodo= valor_atual/df_periodo['close'].iloc[0]# pega o valor de fechamento do primeiro dia da seleção
         dict_valores[key] = valor_atual, diferenca_periodo
         dfativos= pd.DataFrame(dict_valores).T.rename_axis('ticker').add_prefix('Value').reset_index()
         dfativos['Value1']= dfativos['Value1']*100 - 100
@@ -253,7 +253,7 @@ def update_cards_ativos(historical_data, period, dropdown, book_data):
 
     lista_colunas = []
     for n, ativo in enumerate(lista_valores_ativos):
-        if ativo[0] != 'IBOV' and  n < 4:
+        if ativo[0] != 'IBOV' and  n < 4: #até 4 cards -- os 4 primeiros
             col = dbc.Col([
                         dbc.Card([
                             dbc.CardBody([
@@ -294,7 +294,7 @@ def update_cards_ativos(historical_data, period, dropdown, book_data):
 
     df_compra_e_venda = compra_e_venda.sum()
     if 'Venda' in compra_e_venda.groups and 'Compra' in compra_e_venda.groups:
-        valor_carteira_original = df_compra_e_venda['valor_total']['Compra'] - df_compra_e_venda['valor_total']['Venda']
+        valor_carteira_original = df_compra_e_venda['valor_total']['Compra'] - df_compra_e_venda['valor_total']['Venda']# compra menos venda
     elif  'Venda' in compra_e_venda.groups and 'Compra' not in compra_e_venda.groups:
         valor_carteira_original =  -df_compra_e_venda['valor_total']['Venda']  
     elif 'Venda' not in compra_e_venda.groups and 'Compra' in compra_e_venda.groups:
@@ -323,6 +323,7 @@ def update_cards_ativos(historical_data, period, dropdown, book_data):
                 pass
     
     valor_total = 0
+
     for ativo, qtd in resultado.items():
         for id, ativos in enumerate(lista_valores_ativos):
             if ativo == ativos[0]:
