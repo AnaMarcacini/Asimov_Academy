@@ -32,7 +32,7 @@ while True:
     # Capture frame-by-frame
     ret, frame = video_capture.read()
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # converte imagem para a escala de cinza
 
     '''
     O OpenCV cv2.CascadeClassifier (aqui representado como face_cascade) é usado para detectar rostos no quadro em tons de cinza. 
@@ -44,19 +44,24 @@ while True:
     flags determinam o modo de imagem em escala.
     '''
     faces = face_cascade.detectMultiScale(
-        gray,
-        scaleFactor=1.1,
-        minNeighbors=5,
-        minSize=(30, 30),
-        flags=cv2.CASCADE_SCALE_IMAGE
+        gray,               # passa a imagem
+        scaleFactor=1.1,    # escala
+        minNeighbors=5, # numero de vizinhos que uma região deve ter para se considerar um rosto
+        minSize=(30, 30), # tamanho minimo de um rosto
+        flags=cv2.CASCADE_SCALE_IMAGE # modo de imagem em escala
     )
 
+    try:
+        print(f'Rosto detectado x: {faces[0][0]} y: {faces[0][1]} w: {faces[0][2]} h: {faces[0][3]} ')
+    except:
+        print(f'NADA detectado {faces} ')
+        
     for x, y, w, h in faces:  
-        # frame[y:y+h, x:x+w] = scipy.ndimage.convolve(frame[y:y+h, x:x+w], np.atleast_3d(kernel), mode='nearest')
-        frame[y:y+h, x:x+w] = cv2.GaussianBlur(frame[y:y+h, x:x+w] ,(23,23), cv2.BORDER_DEFAULT)
+        frame[y:y+h, x:x+w] = scipy.ndimage.convolve(frame[y:y+h, x:x+w], np.atleast_3d(kernel), mode='nearest')
+        # frame[y:y+h, x:x+w] = cv2.GaussianBlur(frame[y:y+h, x:x+w] ,(23,23), cv2.BORDER_DEFAULT)
     
     # display the resulting frame
-    cv2.imshow('AsimoVideo', frame)
+    cv2.imshow('camera', frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
