@@ -39,6 +39,7 @@ threshold, thresh = cv2.threshold(gray, 250, 255, cv2.THRESH_BINARY) quase tudo 
 
 # Thresholding simples
 threshold, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
+# passa a imagem, sensibilidade (qaul valor se diferencia entre o branco e o preto, valor maximo de 255) e o método de thresholding
 # cv2.imshow('Thresholding simples', thresh)
 
 # Thresholding invertido simples - provável imagem predominantemente branca
