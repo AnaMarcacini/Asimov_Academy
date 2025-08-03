@@ -34,9 +34,13 @@ Funciona calculando o gradiente de intensidade da imagem em cada pixel dentro da
 Encontra a direção do maior aumento da luz para a escuridão e a taxa de mudança nessa direção.
 Para isso temos que calcular Sobel em x e y, pois calculamos o gradiente em relação a uma direção.
 '''
-# cv2.Sobel(image, ddepth, dx, dy), onde dx e dy representam as direções x e y
-x = cv2.Sobel(cinza, cv2.CV_64F, 1, 0)
-y = cv2.Sobel(cinza, cv2.CV_64F, 0, 1)
+# cv2.Sobel(image, ddepth, dx, dy), onde dx e dy representam as direções x e y # usa a mudança de valor em xx e y para calcular o gradiente
+# ddepth -> ddepth: matriz de intensidade de pixels em uma imagem
+x = cv2.Sobel(cinza, cv2.CV_64F, 1, 0) # variando em relação ao eixo x
+# dx = 1, dy = 0 -> Sobel em x
+y = cv2.Sobel(cinza, cv2.CV_64F, 0, 1) # variando em relação ao eixo y
+# dx = 0, dy = 1 -> Sobel em y
+# nesse caso estamos vendo as mudanças de intensidade em relação ao eixo x e y, respectivamente(derivadas)
 
 # resultados separados das derivadas com o método de Sobel
 cv2.imshow('Sobel X', x)
